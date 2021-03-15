@@ -159,7 +159,7 @@ int main(int argc, char* argv[]){
         osg::ref_ptr<osg::Image> osgImage = capture.grabImage(normal_depth_map.getNormalDepthMapNode());
         cv::Mat cv_image;
         convertOSG2CV(osgImage, cv_image);
-        
+
         // receives shader image in opencv format
     	cv::Mat cv_depth;
         osg::ref_ptr<osg::Image> osg_depth = capture.getDepthBuffer();
@@ -217,12 +217,12 @@ int main(int argc, char* argv[]){
                 if (sonar.bins[i] > threshold){
                     // highest = sonar.bins[i];
                     // if (sonar.bins[i] > threshold){
-                    dist = RANGE*((float)(i+1 - k*BIN_COUNT))/((k+1)*BIN_COUNT - k*BIN_COUNT);
+                    dist = (RANGE*((float)(i+1 - k*BIN_COUNT))/((k+1)*BIN_COUNT - k*BIN_COUNT)-16.0)/(0.25);
                     // }
                     break;
-                }                            
+                }
             }
-            distance.insert(distance.end(), dist); 
+            distance.insert(distance.end(), dist);
         }
 
         std_msgs::Float64MultiArray msg_distance;
@@ -245,11 +245,11 @@ int main(int argc, char* argv[]){
 
         // std::cout << "\n\n" << ' ';
 
-        s.show();
+        // s.show();
         s.setData(sonar);
 
         //set sonar image to publish in ros
-        cv::Mat image_sonar = QImage2Mat(s.getImg());   
+        cv::Mat image_sonar = QImage2Mat(s.getImg());
         sensor_msgs::ImagePtr msg_sonar = cv_bridge::CvImage(std_msgs::Header(),"bgr8", image_sonar).toImageMsg();
 
         pub_sonar.publish(msg_sonar);
