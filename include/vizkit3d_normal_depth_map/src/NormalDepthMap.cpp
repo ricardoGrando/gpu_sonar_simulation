@@ -18,8 +18,8 @@
 
 namespace vizkit3d_normal_depth_map {
 
-#define SHADER_PATH_FRAG "/home/longaray/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.frag"
-#define SHADER_PATH_VERT "/home/longaray/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.vert"
+#define SHADER_PATH_FRAG "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.frag"
+#define SHADER_PATH_VERT "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.vert"
 
 NormalDepthMap::NormalDepthMap(float maxRange, float maxHorizontalAngle, float maxVerticalAngle) {
     _normalDepthMapNode = createTheNormalDepthMapShaderNode(maxRange, maxHorizontalAngle, maxVerticalAngle);
@@ -113,4 +113,3 @@ osg::ref_ptr<osg::Group> NormalDepthMap::createTheNormalDepthMapShaderNode(float
 }
 
 }
-

@@ -9,8 +9,10 @@
 #include <osgViewer/Viewer>
 
 // Rock includes
-#include </home/longaray/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/src/NormalDepthMap.hpp>
-#include </home/longaray/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/src/ImageViewerCaptureTool.hpp>
+#include </home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/src/NormalDepthMap.hpp>
+#include </home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/src/ImageViewerCaptureTool.hpp>
+// #include <vizkit3d_normal_depth_ap/src/NormalDepthMap.hpp>
+// #include <vizkit3d_normal_depth_map/src/ImageViewerCaptureTool.hpp>
 
 // OpenCV includes
 #include <opencv2/core/core.hpp>

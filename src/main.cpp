@@ -109,7 +109,7 @@ int main(int argc, char* argv[]){
     osg::ref_ptr<osg::Image> osg_image;
 
     /* generate a random shader image */
-    uint width = BIN_COUNT*5.12;  // 5.12 pixels are needed for each bin;
+    uint width = BIN_COUNT;//*5.12;  // 5.12 pixels are needed for each bin;
     base::Angle beam_width = base::Angle::fromDeg(BEAM_WIDTH);
     base::Angle beam_height = base::Angle::fromDeg(BEAM_HEIGHT);
     uint height = width * tan(beam_height.rad * 0.5) / tan(beam_width.rad * 0.5);
@@ -161,7 +161,7 @@ int main(int argc, char* argv[]){
         convertOSG2CV(osgImage, cv_image);
 
         // receives shader image in opencv format
-    	cv::Mat cv_depth;
+    	  cv::Mat cv_depth;
         osg::ref_ptr<osg::Image> osg_depth = capture.getDepthBuffer();
         gpu_sonar_simulation::convertOSG2CV(osg_depth, cv_depth);
 
@@ -217,7 +217,7 @@ int main(int argc, char* argv[]){
                 if (sonar.bins[i] > threshold){
                     // highest = sonar.bins[i];
                     // if (sonar.bins[i] > threshold){
-                    dist = (RANGE*((float)(i+1 - k*BIN_COUNT))/((k+1)*BIN_COUNT - k*BIN_COUNT)-16.0)/(0.25);
+                    dist = RANGE*((float)(i+1 - k*BIN_COUNT))/((k+1)*BIN_COUNT - k*BIN_COUNT);
                     // }
                     break;
                 }
