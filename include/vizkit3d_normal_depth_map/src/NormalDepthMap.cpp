@@ -16,13 +16,15 @@
 #include <osg/Uniform>
 #include <osgDB/FileUtils>
 
+#include <string>
+
 namespace vizkit3d_normal_depth_map {
 
-#define SHADER_PATH_FRAG "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.frag"
-#define SHADER_PATH_VERT "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.vert"
+// #define SHADER_PATH_FRAG "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.frag"
+// #define SHADER_PATH_VERT "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.vert"
 
-NormalDepthMap::NormalDepthMap(float maxRange, float maxHorizontalAngle, float maxVerticalAngle) {
-    _normalDepthMapNode = createTheNormalDepthMapShaderNode(maxRange, maxHorizontalAngle, maxVerticalAngle);
+NormalDepthMap::NormalDepthMap(float maxRange, float maxHorizontalAngle, float maxVerticalAngle, std::string shaderPathFrag, std::string shaderPathVert) {
+    _normalDepthMapNode = createTheNormalDepthMapShaderNode(maxRange, maxHorizontalAngle, maxVerticalAngle, shaderPathFrag, shaderPathVert);
 }
 
 NormalDepthMap::NormalDepthMap() {
@@ -83,12 +85,12 @@ void NormalDepthMap::addNodeChild(osg::ref_ptr<osg::Node> node) {
     _normalDepthMapNode->addChild(node);
 }
 
-osg::ref_ptr<osg::Group> NormalDepthMap::createTheNormalDepthMapShaderNode(float maxRange, float maxHorizontalAngle, float maxVerticalAngle, bool drawDepth, bool drawNormal) {
+osg::ref_ptr<osg::Group> NormalDepthMap::createTheNormalDepthMapShaderNode(float maxRange, float maxHorizontalAngle, float maxVerticalAngle, std::string shaderPathFrag, std::string shaderPathVert, bool drawDepth, bool drawNormal) {
     osg::ref_ptr<osg::Group> localRoot = new osg::Group();
     osg::ref_ptr<osg::Program> program(new osg::Program());
 
-    osg::ref_ptr<osg::Shader> shaderVertex = osg::Shader::readShaderFile(osg::Shader::VERTEX, osgDB::findDataFile(SHADER_PATH_VERT));
-    osg::ref_ptr<osg::Shader> shaderFragment = osg::Shader::readShaderFile(osg::Shader::FRAGMENT, osgDB::findDataFile(SHADER_PATH_FRAG));
+    osg::ref_ptr<osg::Shader> shaderVertex = osg::Shader::readShaderFile(osg::Shader::VERTEX, osgDB::findDataFile(shaderPathVert));
+    osg::ref_ptr<osg::Shader> shaderFragment = osg::Shader::readShaderFile(osg::Shader::FRAGMENT, osgDB::findDataFile(shaderPathFrag));
     program->addShader(shaderFragment);
     program->addShader(shaderVertex);
 

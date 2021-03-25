@@ -115,7 +115,9 @@ int main(int argc, char* argv[]){
     uint height = width * tan(beam_height.rad * 0.5) / tan(beam_width.rad * 0.5);
 
     float range = RANGE;
-    NormalDepthMap normal_depth_map(range, beam_width.getDeg(), beam_height.getDeg());
+    std::string shaderPathFrag = "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.frag";
+    std::string shaderPathVert = "/home/ricardo/catkin_ws/src/gpu_sonar_simulation/include/vizkit3d_normal_depth_map/resources/shaders/normalDepthMap.vert";
+    NormalDepthMap normal_depth_map(range, beam_width.getDeg(), beam_height.getDeg(), shaderPathFrag, shaderPathVert);
     ImageViewerCaptureTool capture = ImageViewerCaptureTool(beam_height.getRad(), beam_width.getRad(), width, false);
     capture.setBackgroundColor(osg::Vec4d(0.0, 0.0, 0.0, 1.0));
 
@@ -245,7 +247,7 @@ int main(int argc, char* argv[]){
 
         // std::cout << "\n\n" << ' ';
 
-        // s.show();
+        s.show();
         s.setData(sonar);
 
         //set sonar image to publish in ros

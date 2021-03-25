@@ -4,7 +4,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_BUILD_TYPE Debug)
 find_package(catkin REQUIRED COMPONENTS
     cv_bridge
-    qt_build 
+    qt_build
     geometry_msgs
     message_generation
     message_runtime
@@ -75,18 +75,18 @@ target_link_libraries(gpu_sonar_simulation
     ${Qwt_LIBRARIES}
 )
 
-add_executable(test_sonar
-    test/test_Sonar.cpp
-    src/Utils.cpp
-    include/vizkit3d_normal_depth_map/src/NormalDepthMap.cpp
-    include/vizkit3d_normal_depth_map/src/ImageViewerCaptureTool.cpp
-)
+#add_executable(test_sonar
+#    test/test_Sonar.cpp
+#    src/Utils.cpp
+#    include/vizkit3d_normal_depth_map/src/NormalDepthMap.cpp
+#    include/vizkit3d_normal_depth_map/src/ImageViewerCaptureTool.cpp
+#)
 
-target_link_libraries(test_sonar
-    ${OpenCV_LIBS}
-    ${catkin_LIBRARIES}
-    ${OPENSCENEGRAPH_LIBRARIES}
-)
+#target_link_libraries(test_sonar
+#    ${OpenCV_LIBS}
+#    ${catkin_LIBRARIES}
+#    ${OPENSCENEGRAPH_LIBRARIES}
+#)
 
 #################################
 set(MOC_HEADERS

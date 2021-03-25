@@ -12,6 +12,8 @@
 #include <osg/Group>
 #include <osg/ref_ptr>
 
+#include <string>
+
 namespace vizkit3d_normal_depth_map {
 
 /**
@@ -47,7 +49,7 @@ public:
      *  @param maxVerticalAngle: It is a float value which limits the angle calculation in vertical direction process. Default maxHorizontalAngle = PI/4.
      */
     NormalDepthMap();
-    NormalDepthMap(float maxRange, float maxHorizontalAngle, float maxVerticalAngle);
+    NormalDepthMap(float maxRange, float maxHorizontalAngle, float maxVerticalAngle, std::string shaderPathFrag, std::string shaderPathVer);
 
     /**
      * @brief Add the models in the normal depth map node
@@ -79,8 +81,8 @@ public:
     bool isDrawDepth();
 
 private:
-    osg::ref_ptr<osg::Group> createTheNormalDepthMapShaderNode(float maxRange = 50.0, float maxHorizontalAngle = M_PI * 1.0 / 6.0, float maxVerticalAngle = M_PI * 1.0 / 6.0, bool drawDepth = true,
-            bool drawNormal = true);
+    osg::ref_ptr<osg::Group> createTheNormalDepthMapShaderNode(float maxRange = 50.0, float maxHorizontalAngle = M_PI * 1.0 / 6.0, float maxVerticalAngle = M_PI * 1.0 / 6.0, std::string shaderPathFrag = "/home", std::string shaderPathVer = "/home",
+            bool drawDepth = true,bool drawNormal = true);
     osg::ref_ptr<osg::Group> _normalDepthMapNode; //main shader node
 };
 }
